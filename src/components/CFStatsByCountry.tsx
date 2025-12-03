@@ -42,10 +42,25 @@ export default function CFStatsByCountry({
     );
   }
 
-  if (!data?.byCountry || Object.keys(data.byCountry).length === 0) {
+  if (!data) {
+    return (
+      <div className="text-center text-muted-foreground py-8">
+        <p>No data received from API</p>
+      </div>
+    );
+  }
+
+  if (!data.byCountry || Object.keys(data.byCountry).length === 0) {
+    // Log what data we actually have
+    console.log("CFStatsByCountry: No byCountry data. Available data:", JSON.stringify(data, null, 2));
+    console.log("CFStatsByCountry: byCountry exists?", !!data.byCountry);
+    console.log("CFStatsByCountry: byCountry type?", typeof data.byCountry);
+    console.log("CFStatsByCountry: byCountry keys?", data.byCountry ? Object.keys(data.byCountry) : "null");
+    console.log("CFStatsByCountry: byCountry length?", data.byCountry ? Object.keys(data.byCountry).length : 0);
     return (
       <div className="text-center text-muted-foreground py-8">
         <p>No Cloudflare statistics available</p>
+        <p className="text-xs mt-2">Check console for API response details</p>
       </div>
     );
   }

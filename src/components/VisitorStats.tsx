@@ -32,16 +32,27 @@ const AnimatedCounter = ({ value, isVisible }: { value: number; isVisible: boole
 };
 
 const VisitorStats = () => {
-  const { data: cfData, loading: cfLoading } = useCFStats();
+  const { data: cfData, loading: cfLoading, error: cfError } = useCFStats();
   const { ref, isVisible } = useScrollAnimation(0.2);
   
   // Calculate total visits from Cloudflare data
   const totalVisits = cfData?.total || 
     cfData?.totalRequests || 
     (cfData?.byCountry ? Object.values(cfData.byCountry).reduce((sum, count) => sum + count, 0) : 0);
+  
+  // Debug logging
+  useEffect(() => {
+    if (cfData) {
+      console.log("VisitorStats - CF Data:", cfData);
+      console.log("VisitorStats - Total Visits calculated:", totalVisits);
+    }
+    if (cfError) {
+      console.error("VisitorStats - CF Error:", cfError);
+    }
+  }, [cfData, cfError, totalVisits]);
 
   return (
-    <section className="py-20 lg:py-32 bg-muted">
+    <section className="py-20 lg:py-32 bg-muted" style={{ borderBottom: 'none' }}>
       <div className="container mx-auto px-6" ref={ref}>
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -93,7 +104,7 @@ const VisitorStats = () => {
               <CFStatsByCountry maxItems={6} />
               
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                Cloudflare Analytics - Last 24 hours
+                Cloudflare Analytics - All Time
               </p>
             </div>
           </div>

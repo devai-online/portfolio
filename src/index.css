@@ -93,6 +93,20 @@
   * {
     @apply border-border;
   }
+  
+footer,
+footer *,
+footer *::before,
+footer *::after {
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
 
   body {
     @apply bg-background text-foreground;
@@ -108,4 +122,37 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-secondary;
   }
+}
+
+/* Remove any decorative diagonal lines from footer */
+footer::before,
+footer::after {
+  display: none !important;
+  content: none !important;
+}
+
+footer {
+  background-image: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+footer *,
+footer *::before,
+footer *::after {
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Prevent borders from appearing on scroll animations */
+section + footer,
+section + footer * {
+  border-top: none !important;
 }
