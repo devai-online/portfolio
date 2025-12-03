@@ -1,15 +1,8 @@
-import { useVisitorCounter } from '@/hooks/useVisitorCounter';
+import { useCFStats } from '@/hooks/useCFStats';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Eye, Globe, MapPin } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-// Mock regional data - you can replace this with real data later
-const mockRegions = [
-  { region: 'India', percentage: 65, color: 'bg-accent' },
-  { region: 'United States', percentage: 15, color: 'bg-primary' },
-  { region: 'Europe', percentage: 12, color: 'bg-secondary' },
-  { region: 'Others', percentage: 8, color: 'bg-muted-foreground' },
-];
+import { Eye, Globe } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import CFStatsByCountry from './CFStatsByCountry';
 
 const AnimatedCounter = ({ value, isVisible }: { value: number; isVisible: boolean }) => {
   const [count, setCount] = useState(0);
@@ -39,15 +32,13 @@ const AnimatedCounter = ({ value, isVisible }: { value: number; isVisible: boole
 };
 
 const VisitorStats = () => {
-  const visitorCount = useVisitorCounter();
+  const { data: cfData, loading: cfLoading } = useCFStats();
   const { ref, isVisible } = useScrollAnimation(0.2);
-  const [barsAnimated, setBarsAnimated] = useState(false);
-
-  useEffect(() => {
-    if (isVisible) {
-      setTimeout(() => setBarsAnimated(true), 300);
-    }
-  }, [isVisible]);
+  
+  // Calculate total visits from Cloudflare data
+  const totalVisits = cfData?.total || 
+    cfData?.totalRequests || 
+    (cfData?.byCountry ? Object.values(cfData.byCountry).reduce((sum, count) => sum + count, 0) : 0);
 
   return (
     <section className="py-20 lg:py-32 bg-muted">
@@ -74,7 +65,11 @@ const VisitorStats = () => {
                 <Eye className="w-8 h-8 text-primary-foreground" />
               </div>
               <p className="text-6xl lg:text-7xl font-heading font-bold text-foreground mb-2">
-                <AnimatedCounter value={visitorCount} isVisible={isVisible} />
+                {cfLoading ? (
+                  <span className="text-2xl">Loading...</span>
+                ) : (
+                  <AnimatedCounter value={totalVisits} isVisible={isVisible} />
+                )}
               </p>
               <p className="text-muted-foreground text-lg">Total Site Visits</p>
             </div>
@@ -95,31 +90,10 @@ const VisitorStats = () => {
                 </h3>
               </div>
               
-              <div className="space-y-4">
-                {mockRegions.map((item, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between text-sm mb-1">
-                      <span className="flex items-center gap-2 text-foreground">
-                        <MapPin className="w-4 h-4 text-muted-foreground" />
-                        {item.region}
-                      </span>
-                      <span className="text-muted-foreground">{item.percentage}%</span>
-                    </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full ${item.color} rounded-full transition-all duration-1000 ease-out`}
-                        style={{ 
-                          width: barsAnimated ? `${item.percentage}%` : '0%',
-                          transitionDelay: `${index * 150}ms`
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <CFStatsByCountry maxItems={6} />
               
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                *Mock data - Connect backend for real statistics
+                Cloudflare Analytics - Last 24 hours
               </p>
             </div>
           </div>
