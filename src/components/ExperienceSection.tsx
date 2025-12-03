@@ -1,4 +1,5 @@
 import { CheckCircle2 } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const experiences = [
   "Principal of Vardhaman College of Engineering, providing visionary leadership that strengthened the institution's national standing in engineering education.",
@@ -12,25 +13,32 @@ const experiences = [
 ];
 
 const ExperienceSection = () => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
-    <section className="py-20 lg:py-32 bg-muted">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-20 lg:py-32 bg-muted">
+      <div className="container mx-auto px-6" ref={ref}>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground text-center mb-4">
-            Technical & Professional
-            <span className="block text-accent">Experience</span>
-          </h2>
-          <p className="text-muted-foreground text-center mb-12 text-lg">
-            Over two decades of excellence in academic leadership and technical innovation
-          </p>
+          <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
+              Technical & Professional
+              <span className="block text-accent">Experience</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Over two decades of excellence in academic leadership and technical innovation
+            </p>
+          </div>
           
           <div className="space-y-4">
             {experiences.map((exp, index) => (
               <div 
                 key={index}
-                className="flex gap-4 p-5 bg-card rounded-xl border border-border hover:border-accent/50 transition-colors"
+                className={`group flex gap-4 p-5 bg-card rounded-xl border border-border transition-all duration-500 hover:border-accent/50 hover:shadow-lg hover:-translate-x-1 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                }`}
+                style={{ transitionDelay: isVisible ? `${index * 80 + 200}ms` : '0ms' }}
               >
-                <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" />
                 <p className="text-foreground leading-relaxed">{exp}</p>
               </div>
             ))}
