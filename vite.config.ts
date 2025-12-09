@@ -7,12 +7,13 @@ export default defineConfig({
   server: {
     host: "::",
     port: 8080,
-    proxy: {
+    // Proxy only needed for local development
+    proxy: process.env.NODE_ENV === 'development' ? {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
       },
-    },
+    } : undefined,
   },
   plugins: [react()],
   resolve: {
