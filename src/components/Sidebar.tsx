@@ -83,6 +83,14 @@ const Sidebar = () => {
           <Phone className="h-3.5 w-3.5 shrink-0" />
           +91 94401 14765
         </a>
+        <a
+          href="https://ravendos.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block pt-2 text-[0.7rem] text-muted-foreground transition-colors hover:text-accent"
+        >
+          Made with <span className="text-accent">&hearts;</span> by RavenDOS
+        </a>
       </div>
     </div>
   );
