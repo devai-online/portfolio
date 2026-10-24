@@ -30,79 +30,78 @@ const collaboration = [
 ];
 
 const Contact = () => (
-  <section id="contact" className="scroll-mt-20 bg-primary px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
-    <div className="mx-auto max-w-content">
-      <div className="grid gap-14 lg:grid-cols-12">
-        {/* Left */}
-        <div className="lg:col-span-5">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-accent">
-            Contact & Collaboration
+  <Section
+    id="contact"
+    eyebrow="Contact & Collaboration"
+    title={
+      <>
+        Let's work <span className="text-muted-foreground">together</span>
+      </>
+    }
+    intro="I welcome enquiries for research collaboration, academic partnership and invited talks. Please reach out through any of the channels below."
+    alt
+  >
+    <div className="grid gap-12 lg:grid-cols-12">
+      {/* Left */}
+      <div className="lg:col-span-5">
+        <div className="flex items-start gap-3 text-muted-foreground">
+          <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+          <p>
+            Vardhaman College of Engineering
+            <br />
+            Shamshabad, Hyderabad, Telangana, India
           </p>
-          <h2 className="font-heading text-3xl leading-tight text-white sm:text-4xl lg:text-[2.75rem]">
-            Let's work <span className="text-white/60">together</span>
-          </h2>
-          <p className="mt-5 max-w-md leading-relaxed text-white/70">
-            I welcome enquiries for research collaboration, academic partnership and invited
-            talks. Please reach out through any of the channels below.
-          </p>
-
-          <div className="mt-8 flex items-start gap-3 text-white/70">
-            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-            <p>
-              Vardhaman College of Engineering
-              <br />
-              Shamshabad, Hyderabad, Telangana, India
-            </p>
-          </div>
         </div>
 
-        {/* Right */}
-        <div className="lg:col-span-7">
-          <div className="space-y-5">
-            {details.map((d) => {
-              const Icon = d.icon;
-              return (
-                <a
-                  key={d.label}
-                  href={d.href}
-                  target={d.label === 'Website' ? '_blank' : undefined}
-                  rel={d.label === 'Website' ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center gap-4"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-white/20 transition-colors group-hover:border-accent group-hover:bg-accent/10">
-                    <Icon className="h-5 w-5 text-accent" />
+        <div className="mt-8 space-y-5">
+          {details.map((d) => {
+            const Icon = d.icon;
+            return (
+              <a
+                key={d.label}
+                href={d.href}
+                target={d.label === 'Website' ? '_blank' : undefined}
+                rel={d.label === 'Website' ? 'noopener noreferrer' : undefined}
+                className="group flex items-center gap-4"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-border bg-background transition-colors group-hover:border-accent group-hover:bg-accent/5">
+                  <Icon className="h-5 w-5 text-accent" />
+                </span>
+                <span>
+                  <span className="block text-xs text-muted-foreground">{d.label}</span>
+                  <span className="text-foreground transition-colors group-hover:text-accent">
+                    {d.value}
                   </span>
-                  <span>
-                    <span className="block text-xs text-white/50">{d.label}</span>
-                    <span className="text-white transition-colors group-hover:text-accent">
-                      {d.value}
-                    </span>
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 border-t border-white/10 pt-8">
-            <h3 className="mb-4 font-heading text-xl text-white">Open to Collaboration On</h3>
-            <ul className="space-y-3">
-              {collaboration.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-white/70">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span className="text-[0.95rem]">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
 
-      <div className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
-        <p>© {new Date().getFullYear()} Prof. JVR Ravindra</p>
-        <p>All rights reserved</p>
+      {/* Right */}
+      <div className="lg:col-span-7">
+        <div className="rounded-lg border border-border bg-background p-8">
+          <h3 className="mb-5 font-heading text-xl font-semibold text-foreground">
+            Open to Collaboration On
+          </h3>
+          <ul className="space-y-3">
+            {collaboration.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-muted-foreground">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                <span className="text-[0.95rem]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
-  </section>
+
+    <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-muted-foreground sm:flex-row">
+      <p>© {new Date().getFullYear()} Prof. JVR Ravindra</p>
+      <p>All rights reserved</p>
+    </div>
+  </Section>
 );
 
 export default Contact;
