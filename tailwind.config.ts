@@ -14,8 +14,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
-        body: ['Source Sans 3', 'sans-serif'],
+        heading: ['Cormorant Garamond', 'Georgia', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        content: '70rem',
       },
       colors: {
         border: "hsl(var(--border))",

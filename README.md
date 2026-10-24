@@ -1,138 +1,77 @@
-# Prof. JVR Ravindra - Portfolio Website
+# Prof. JVR Ravindra — Portfolio Website
 
 Portfolio website for Prof. JVR Ravindra, Principal & Professor of ECE at Vardhaman College of Engineering.
 
-## Project Structure
+A fully static single-page application — no backend or API — designed for simple deployment to static hosts such as **Cloudflare Pages**.
 
-This is a monorepo containing:
-- **Frontend**: React + Vite application
-- **Backend**: Express.js API server for visitor tracking
+## Technologies
 
-## Technologies Used
-
-### Frontend
 - Vite
 - TypeScript
 - React
-- shadcn-ui
 - Tailwind CSS
-
-### Backend
-- Node.js
-- Express
-- File-based storage for visitor data
+- shadcn-ui primitives
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js & npm (or Bun)
 
 ### Installation
 
 ```sh
-# Install all dependencies (root and backend)
-npm run install:all
-```
-
-Or manually:
-```sh
-# Install root dependencies
 npm install
-
-# Install backend dependencies
-cd backend
-npm install
-cd ..
 ```
 
 ### Development
-
-Run both frontend and backend together:
 
 ```sh
 npm run dev
 ```
 
-This will start:
-- Frontend on `http://localhost:8080`
-- Backend API on `http://localhost:3001`
-
-Or run them separately:
-
-```sh
-# Frontend only
-npm run dev:frontend
-
-# Backend only
-npm run dev:backend
-```
+Runs on `http://localhost:8080`.
 
 ## Available Scripts
 
-### Root Scripts
-- `npm run dev` - Start both frontend and backend concurrently
-- `npm run dev:frontend` - Start frontend only
-- `npm run dev:backend` - Start backend only
-- `npm run build` - Build frontend for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run install:all` - Install all dependencies
+- `npm run dev` — Start the dev server
+- `npm run build` — Build for production (output in `dist/`)
+- `npm run preview` — Preview the production build
+- `npm run lint` — Run ESLint
 
-### Backend Scripts
-- `cd backend && npm run dev` - Start backend with watch mode
-- `cd backend && npm start` - Start backend in production mode
+## Project Structure
 
-## API Endpoints
-
-### GET `/api/visitors`
-Get current visitor count
-```json
-{
-  "totalVisitors": 1234,
-  "uniqueVisitors": 567
-}
+```
+src/
+  components/
+    Sidebar.tsx        Left navigation (fixed on desktop, drawer on mobile)
+    Section.tsx        Shared section wrapper (eyebrow + heading + intro)
+    blocks.tsx         Reusable content blocks (stats, cards, lists, timeline, tags)
+    sections/          One file per page section (Home, About, Research, …)
+    ui/                shadcn-ui primitives
+  hooks/
+    useActiveSection.ts  Highlights the current section in the sidebar
+    useScrollAnimation.ts
+  lib/
+    sections.ts        Single source of truth for nav order, ids and labels
+  pages/
+    Index.tsx          Composes the sidebar + all sections
 ```
 
-### POST `/api/visitors/increment`
-Increment visitor count (tracks unique visitors)
-```json
-{
-  "visitorId": "visitor_1234567890_abc123"
-}
-```
+The site content is organised into the sections defined in `src/lib/sections.ts`:
+Home · About & Academic Journey · Leadership & Governance · Accreditation & Quality ·
+Outcome-Based Education · Research & Innovation · Teaching & Mentorship ·
+IEEE & Professional Service · Invited Talks & FDP · Industry & Outreach ·
+Honours & Recognition · Gallery · Contact & Collaboration.
 
-### GET `/api/health`
-Health check endpoint
+## Deployment (Cloudflare Pages)
 
-## Features
+1. Connect the repository in the Cloudflare Pages dashboard.
+2. Build command: `npm run build`
+3. Build output directory: `dist`
+4. `public/_redirects` is included so client-side routing falls back to `index.html`.
 
-- Responsive design
-- Smooth scroll animations
-- Real-time visitor counter with backend tracking
-- Cloudflare Analytics integration
-- Contact information
-- Professional portfolio sections
-
-## Data Storage
-
-Visitor data is stored in `backend/visitor-data.json`. This file is automatically created and should be added to `.gitignore` (already configured).
-
-## Deployment
-
-### Frontend
-Build the frontend:
-```sh
-npm run build
-```
-
-The `dist` folder contains the production build.
-
-### Backend
-The backend can be deployed to any Node.js hosting service. Make sure to:
-1. Set the `PORT` environment variable if needed
-2. Ensure write permissions for the `visitor-data.json` file
-3. Use a proper database in production (currently using file-based storage)
+The `dist/` folder is a self-contained static bundle and can be served by any static host.
 
 ## License
 
