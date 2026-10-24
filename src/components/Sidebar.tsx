@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail, Phone } from 'lucide-react';
 import { sections } from '@/lib/sections';
-import { useActiveSection } from '@/hooks/useActiveSection';
-
-const sectionIds = sections.map((s) => s.id);
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const activeId = useActiveSection(sectionIds);
+  const location = useLocation();
+
+  // Close the mobile drawer whenever the route changes.
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
@@ -17,59 +20,55 @@ const Sidebar = () => {
     };
   }, [isOpen]);
 
-  const handleNavClick = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setIsOpen(false);
-  };
-
   const navContent = (
     <div className="flex h-full flex-col">
       {/* Identity */}
-      <button
-        onClick={() => handleNavClick('home')}
-        className="px-6 pb-8 pt-10 text-left"
-      >
+      <Link to="/" className="block px-6 pb-6 pt-9 text-left">
         <span className="block font-heading text-xl font-semibold leading-tight text-foreground">
           Prof. JVR Ravindra
         </span>
         <span className="mt-2 block text-[0.68rem] font-medium uppercase tracking-[0.2em] text-accent">
           Principal &amp; Professor, ECE
         </span>
-      </button>
+      </Link>
 
       <div className="mx-6 border-t border-border" />
 
-      {/* Navigation */}
-      <nav className="scrollbar-slim flex-1 overflow-y-auto px-4 py-6">
+      {/* Navigation — fits without scrolling, one item per line */}
+      <nav className="flex-1 px-4 py-4">
         <ul className="space-y-0.5">
-          {sections.map((item) => {
-            const isActive = activeId === item.id;
-            return (
-              <li key={item.id}>
-                <button
-                  onClick={() => handleNavClick(item.id)}
-                  className={`flex w-full items-center gap-3 rounded-md px-4 py-2.5 text-left text-[0.78rem] tracking-wide transition-colors duration-200 ${
+          {sections.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 whitespace-nowrap rounded-md px-4 py-2 text-[0.78rem] tracking-wide transition-colors duration-200 ${
                     isActive
                       ? 'bg-muted font-medium text-foreground'
                       : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-                  }`}
-                >
-                  <span
-                    className={`h-4 w-0.5 shrink-0 rounded-full transition-colors duration-200 ${
-                      isActive ? 'bg-accent' : 'bg-transparent'
-                    }`}
-                  />
-                  {item.label}
-                </button>
-              </li>
-            );
-          })}
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <span
+                      className={`h-4 w-0.5 shrink-0 rounded-full transition-colors duration-200 ${
+                        isActive ? 'bg-accent' : 'bg-transparent'
+                      }`}
+                    />
+                    {item.label}
+                  </>
+                )}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
 
       {/* Contact footer */}
       <div className="mx-6 border-t border-border" />
-      <div className="space-y-2 px-6 py-6">
+      <div className="space-y-2 px-6 py-5">
         <a
           href="mailto:jayanthi@ieee.org"
           className="flex items-center gap-3 text-xs text-muted-foreground transition-colors hover:text-accent"
@@ -92,9 +91,9 @@ const Sidebar = () => {
     <>
       {/* Mobile top bar */}
       <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-border bg-background px-5 lg:hidden">
-        <span className="font-heading text-base font-semibold text-foreground">
+        <Link to="/" className="font-heading text-base font-semibold text-foreground">
           Prof. JVR Ravindra
-        </span>
+        </Link>
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open menu"

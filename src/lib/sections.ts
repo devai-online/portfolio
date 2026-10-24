@@ -1,23 +1,25 @@
-// Single source of truth for the section order, ids and sidebar labels.
-// Used by both the Sidebar (navigation) and the page layout.
+// Single source of truth for the pages: route path, sidebar label and short label.
+// Used by both the Sidebar (navigation) and the router (App.tsx).
 
 export interface NavItem {
-  id: string;
+  /** Route path, e.g. '/about'. Home is '/'. */
+  path: string;
+  /** Label shown in the sidebar. */
   label: string;
 }
 
 export const sections: NavItem[] = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'leadership', label: 'Leadership & Governance' },
-  { id: 'accreditation', label: 'Accreditation & Quality' },
-  { id: 'education', label: 'Outcome-Based Education' },
-  { id: 'research', label: 'Research & Innovation' },
-  { id: 'teaching', label: 'Teaching & Mentorship' },
-  { id: 'ieee', label: 'IEEE & Professional Service' },
-  { id: 'talks', label: 'Invited Talks & FDP' },
-  { id: 'industry', label: 'Industry & Outreach' },
-  { id: 'honours', label: 'Honours & Recognition' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'contact', label: 'Contact' },
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/leadership', label: 'Leadership & Governance' },
+  { path: '/accreditation', label: 'Accreditation & Quality' },
+  { path: '/education', label: 'Outcome-Based Education' },
+  { path: '/research', label: 'Research & Innovation' },
+  { path: '/teaching', label: 'Teaching & Mentorship' },
+  { path: '/ieee', label: 'IEEE & Service' },
+  { path: '/talks', label: 'Invited Talks & FDP' },
+  { path: '/industry', label: 'Industry & Outreach' },
+  { path: '/honours', label: 'Honours & Recognition' },
+  { path: '/gallery', label: 'Gallery' },
+  { path: '/contact', label: 'Contact' },
 ];
