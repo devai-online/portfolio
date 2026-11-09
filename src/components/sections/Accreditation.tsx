@@ -1,38 +1,34 @@
 import Section from '@/components/Section';
-import { InfoCardGrid } from '@/components/blocks';
-import { Award, CheckCircle2, ClipboardCheck, RefreshCw, Users } from 'lucide-react';
+import { InfoCardGrid, BulletList } from '@/components/blocks';
+import { Award, Users, ClipboardCheck } from 'lucide-react';
 
 const cards = [
   {
     icon: Award,
-    title: 'NBA Accreditation Leadership',
+    title: 'Institutional Accreditation Leadership',
     description:
-      'Led programme accreditation under NBA (Tier-I) aligned with the Washington Accord, embedding outcome-based assessment across departments.',
-  },
-  {
-    icon: CheckCircle2,
-    title: 'NAAC Peer Assessment',
-    description:
-      'Experienced NAAC assessor and institutional lead, driving quality benchmarking and evidence-based self-study across criteria.',
+      'NAAC Cycle-I: A grade (CGPA 3.24/4.00). NAAC Cycle-II: A++ grade (CGPA 3.58/4.00). NBA accreditation and reaccreditation for UG and PG programmes, plus continuation of UGC autonomous status.',
   },
   {
     icon: Users,
-    title: 'UGC Committee Service',
+    title: 'External Assessment Service',
     description:
-      'Service on UGC and regulatory committees contributing to policy, academic standards and institutional review.',
+      'NAAC Peer Team Member — institutional peer assessment, academic and administrative review and evidence verification. UGC Committee Member — external academic and institutional evaluation of governance, compliance and quality.',
   },
   {
     icon: ClipboardCheck,
-    title: 'Academic Audits',
+    title: 'Academic Audits & Continuous Improvement',
     description:
-      'Institutionalised internal and external academic audits to monitor compliance, attainment and process integrity.',
+      'Review of course files, assessment instruments, laboratories, projects, internships, faculty contributions and student progression — with corrective measures tracked through documented Action Taken Reports.',
   },
-  {
-    icon: RefreshCw,
-    title: 'Continuous Improvement',
-    description:
-      'Closed-loop quality systems that translate audit findings and stakeholder feedback into measurable improvements.',
-  },
+];
+
+const rankings = [
+  'NAAC Cycle-II: A++ (CGPA 3.58/4.00)',
+  'NAAC Cycle-I: A (CGPA 3.24/4.00)',
+  'NBA accreditation for UG & PG programmes',
+  'UGC autonomous status',
+  'NIRF, ARIIA and Times Higher Education rankings',
 ];
 
 const Accreditation = () => (
@@ -44,10 +40,17 @@ const Accreditation = () => (
         Quality systems that <span className="text-muted-foreground">endure</span>
       </>
     }
-    intro="Expertise in regulatory compliance and accreditation frameworks under NAAC, NBA (Tier-I) and the Washington Accord — with a sustained commitment to academic audit and continuous improvement."
+    intro="Experience in accreditation and quality assurance spanning institutional leadership, programme-level preparedness, external peer assessment, academic audits and continuous improvement."
     alt
   >
     <InfoCardGrid cards={cards} />
+
+    <div className="mt-12 rounded-lg border border-border bg-background p-8">
+      <h3 className="mb-6 font-heading text-2xl font-semibold text-foreground">
+        Accreditation & Ranking Milestones
+      </h3>
+      <BulletList items={rankings} columns={2} />
+    </div>
   </Section>
 );
 

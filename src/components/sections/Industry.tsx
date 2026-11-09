@@ -1,38 +1,22 @@
 import Section from '@/components/Section';
-import { InfoCardGrid } from '@/components/blocks';
-import { Factory, Briefcase, GraduationCap, HeartHandshake, School } from 'lucide-react';
+import { TagRow, BulletList } from '@/components/blocks';
 
-const cards = [
-  {
-    icon: Factory,
-    title: 'Industry Partnerships',
-    description:
-      'Strategic partnerships and MoUs with technology companies enabling joint labs, internships and sponsored research.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Consultancy',
-    description:
-      'Technical consultancy in VLSI and electronics systems, connecting academic expertise with industry needs.',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Skill Development',
-    description:
-      'Skill development and certification initiatives that enhance employability and industry readiness of students.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Community Projects',
-    description:
-      'Societal outreach and community engagement projects applying technology for social good.',
-  },
-  {
-    icon: School,
-    title: 'School Outreach',
-    description:
-      'STEM awareness and school outreach programmes that inspire the next generation of engineers.',
-  },
+const partners = [
+  'MassMutual',
+  'Evernorth Health Services',
+  'ARK Infosolutions',
+  'QNX',
+  'Cadence',
+  'RF Communications',
+];
+
+const initiatives = [
+  'Wireless sensor networks for environmental monitoring and disaster response',
+  'A low-cost foot therapy device for plantar fasciitis',
+  'Science and mathematics teacher training using economical teaching aids',
+  'Skill development through NSDC / PMKVY 4.0',
+  'Community resilience initiatives across six blocks of Ranga Reddy district',
+  'Innovation, entrepreneurship and intellectual property awareness',
 ];
 
 const Industry = () => (
@@ -44,10 +28,20 @@ const Industry = () => (
         Bridging academia and <span className="text-muted-foreground">society</span>
       </>
     }
-    intro="Deep engagement with industry and community — through partnerships, consultancy, skill development and outreach that extend the institution's impact beyond the classroom."
+    intro="Strengthening industry–academia engagement through partnerships that support specialised laboratories, industry-aligned training, faculty development, student projects and collaborative research."
     alt
   >
-    <InfoCardGrid cards={cards} />
+    <h3 className="mb-5 font-heading text-2xl font-semibold text-foreground">
+      Institutional Collaborations
+    </h3>
+    <TagRow tags={partners} />
+
+    <div className="mt-12 rounded-lg border border-border bg-background p-8">
+      <h3 className="mb-6 font-heading text-2xl font-semibold text-foreground">
+        Societal & Community-Oriented Initiatives
+      </h3>
+      <BulletList items={initiatives} columns={2} />
+    </div>
   </Section>
 );
 

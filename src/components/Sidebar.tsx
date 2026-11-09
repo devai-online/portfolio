@@ -70,11 +70,11 @@ const Sidebar = () => {
       <div className="mx-6 border-t border-border" />
       <div className="space-y-2 px-6 py-5">
         <a
-          href="mailto:jayanthi@ieee.org"
+          href="mailto:jvrravindra@gmail.com"
           className="flex items-center gap-3 text-xs text-muted-foreground transition-colors hover:text-accent"
         >
           <Mail className="h-3.5 w-3.5 shrink-0" />
-          jayanthi@ieee.org
+          jvrravindra@gmail.com
         </a>
         <a
           href="tel:+919440114765"

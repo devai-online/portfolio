@@ -151,3 +151,67 @@ export const TagRow = ({ tags }: { tags: string[] }) => (
     ))}
   </div>
 );
+
+/* ------------------------------------------------------------------ */
+/* Simple table — responsive, for structured records                   */
+/* ------------------------------------------------------------------ */
+
+export const SimpleTable = ({
+  headers,
+  rows,
+}: {
+  headers: string[];
+  rows: (string | ReactNode)[][];
+}) => (
+  <div className="overflow-x-auto rounded-lg border border-border">
+    <table className="w-full border-collapse text-left text-sm">
+      <thead>
+        <tr className="bg-card">
+          {headers.map((h) => (
+            <th
+              key={h}
+              className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-foreground"
+            >
+              {h}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, i) => (
+          <tr key={i} className="border-t border-border align-top">
+            {row.map((cell, j) => (
+              <td
+                key={j}
+                className={`px-4 py-3 leading-relaxed ${
+                  j === 0 ? 'font-medium text-foreground' : 'text-muted-foreground'
+                }`}
+              >
+                {cell}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
+/* ------------------------------------------------------------------ */
+/* Definition grid — label/value pairs                                 */
+/* ------------------------------------------------------------------ */
+
+export const DefGrid = ({
+  items,
+}: {
+  items: { term: string; detail: string }[];
+}) => (
+  <div className="grid gap-5 sm:grid-cols-2">
+    {items.map((it) => (
+      <div key={it.term} className="rounded-lg border border-border bg-background p-5">
+        <h3 className="font-heading text-lg font-semibold text-foreground">{it.term}</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{it.detail}</p>
+      </div>
+    ))}
+  </div>
+);

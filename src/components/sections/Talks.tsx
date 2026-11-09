@@ -1,32 +1,14 @@
 import Section from '@/components/Section';
-import { InfoCardGrid } from '@/components/blocks';
-import { Mic, Presentation, Users2, Wrench } from 'lucide-react';
+import { BulletList } from '@/components/blocks';
 
-const cards = [
-  {
-    icon: Mic,
-    title: 'Keynotes',
-    description:
-      'Keynote addresses at national and international conferences on VLSI, outcome-based education and academic leadership.',
-  },
-  {
-    icon: Presentation,
-    title: 'Guest Lectures & Technical Talks',
-    description:
-      'Invited lectures at universities and institutions on emerging technologies, research methodology and quality assurance.',
-  },
-  {
-    icon: Users2,
-    title: 'Faculty Development Programmes',
-    description:
-      'Resource person for FDPs on OBE, accreditation, assessment design and research mentoring.',
-  },
-  {
-    icon: Wrench,
-    title: 'Workshops',
-    description:
-      'Hands-on workshops on VLSI design flows, EDA tools and competency-based curriculum development.',
-  },
+const expertise = [
+  'Outcome-Based Education and accreditation preparedness',
+  'CO–PO–PSO mapping and attainment',
+  'Bloom’s Taxonomy and assessment design',
+  'Academic audits and continuous improvement',
+  'Curriculum development and academic regulations',
+  'Low-power VLSI and emerging computing architectures',
+  'Research development and doctoral mentorship',
 ];
 
 const Talks = () => (
@@ -38,9 +20,19 @@ const Talks = () => (
         Sharing knowledge <span className="text-muted-foreground">widely</span>
       </>
     }
-    intro="A sustained programme of keynotes, guest lectures, technical talks and faculty development sessions across the engineering education community."
+    intro="Contributing to faculty development through invited lectures, academic mentoring and sessions on teaching, assessment and quality assurance — with more than 14 guest lectures delivered for faculty members."
   >
-    <InfoCardGrid cards={cards} columns={2} />
+    <div className="rounded-lg border border-border bg-card p-8">
+      <h3 className="mb-6 font-heading text-2xl font-semibold text-foreground">
+        Areas of Expertise for Invited Engagements
+      </h3>
+      <BulletList items={expertise} columns={2} />
+    </div>
+
+    <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+      Each engagement typically includes the talk title, host institution, date, audience,
+      event brochure and photographs — documented under News &amp; Gallery.
+    </p>
   </Section>
 );
 

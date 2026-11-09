@@ -1,22 +1,29 @@
 import Section from '@/components/Section';
-import { TagRow, BulletList } from '@/components/blocks';
+import { SimpleTable } from '@/components/blocks';
 
 const courses = [
-  'VLSI Design',
-  'Digital System Design',
-  'Low-Power VLSI',
-  'CMOS Circuits',
-  'Embedded Systems',
-  'Microprocessors & Microcontrollers',
-  'Digital Signal Processing',
-  'Research Methodology',
+  ['Electronic Circuits', 'Electronic Devices & Circuits; Circuit Analysis; Integrated Circuits & Applications'],
+  ['Digital Systems & VLSI', 'Digital Logic Design; CMOS VLSI Design; Low-Power VLSI Design'],
+  ['Signals & Control', 'Signals & Systems; Digital Signal Processing; Linear Control Systems'],
+  ['Electromagnetics', 'Electromagnetics & Transmission Lines; Antennas & Wave Propagation'],
+  ['Communications', 'Analog & Digital Communications; Wireless Communications & Networks'],
+  ['Embedded Systems & IoT', 'Real-Time Embedded Systems; IoT Architectures & Protocols'],
+  ['Artificial Intelligence', 'Machine Learning'],
 ];
 
-const supervision = [
-  'Doctoral (Ph.D.) supervision in VLSI and allied areas',
-  'Guidance of UG and PG projects with research and industry orientation',
-  'Mentoring of early-career faculty and research scholars',
-  'Student teams recognised in national and international competitions',
+const graduated = [
+  ['Ch. Ashok Babu', 'JNTU Hyderabad', '2019', 'Optimised threshold for improved power-delay product of VLSI circuits'],
+  ['B. Srikanth', 'KL University', '2021', 'FPGA-based double-precision floating-point computation and AES'],
+  ['M. Lavanya', 'KL University', '2021', 'Machine-learning-based approximate 4:2 compressors'],
+  ['C. Padmini', 'JNTU Hyderabad', '2021', 'Differential power attacks in secure cryptographic systems'],
+  ['Sangeetha Singh', 'JNTU Kakinada', '2023', 'Performance modelling of efficient network-on-chip architectures'],
+];
+
+const ongoing = [
+  ['Sathwara Snehal Bharatkumar', 'RK University', 'AI/ML modelling techniques'],
+  ['Krupali Sureshbhai Gosai', 'Marwadi University', 'Transaction modelling analysis'],
+  ['Sarepalli Madhuri', 'Marwadi University', 'Low-power analysis with quantum computing'],
+  ['K. Purushotham Reddy', 'SR University', 'In-memory and edge computing architectures for low-power VLSI'],
 ];
 
 const Teaching = () => (
@@ -28,31 +35,32 @@ const Teaching = () => (
         Teaching, guiding, <span className="text-muted-foreground">mentoring</span>
       </>
     }
-    intro="A teaching philosophy that blends conceptual depth with hands-on design, nurturing independent thinkers through research supervision and sustained mentorship."
+    intro="Teaching experience across undergraduate and postgraduate engineering education since 1999 — theory courses, laboratory instruction, Engineering Design Thinking, Universal Human Values and project supervision."
   >
-    <div className="grid gap-12 lg:grid-cols-12">
-      <div className="lg:col-span-7">
-        <h3 className="mb-5 font-heading text-2xl text-foreground">Courses Taught</h3>
-        <TagRow tags={courses} />
+    <h3 className="mb-5 font-heading text-2xl font-semibold text-foreground">Courses Taught</h3>
+    <SimpleTable headers={['Domain', 'Courses']} rows={courses} />
 
-        <h3 className="mb-5 mt-12 font-heading text-2xl text-foreground">
-          Supervision & Student Achievements
-        </h3>
-        <BulletList items={supervision} />
-      </div>
+    <h3 className="mb-5 mt-12 font-heading text-2xl font-semibold text-foreground">
+      Doctoral Scholars Graduated
+    </h3>
+    <SimpleTable
+      headers={['Scholar', 'University', 'Year', 'Research Focus']}
+      rows={graduated}
+    />
 
-      <div className="lg:col-span-5">
-        <div className="h-full border-l-2 border-accent bg-card p-8">
-          <h3 className="mb-4 font-heading text-2xl text-foreground">Teaching Philosophy</h3>
-          <p className="text-[0.95rem] leading-relaxed text-muted-foreground">
-            I believe engineering education must connect first principles to real design.
-            Students learn best when challenged with authentic problems, supported by
-            mentorship, and assessed against clear outcomes. My aim is to develop
-            technically strong, ethically grounded and self-directed engineers prepared
-            for research and industry alike.
-          </p>
-        </div>
-      </div>
+    <h3 className="mb-5 mt-12 font-heading text-2xl font-semibold text-foreground">
+      Ongoing Doctoral Supervision
+    </h3>
+    <SimpleTable headers={['Scholar', 'University', 'Research Area']} rows={ongoing} />
+
+    <div className="mt-12 border-l-2 border-accent bg-card p-8">
+      <h3 className="mb-3 font-heading text-xl font-semibold text-foreground">
+        Mentoring Approach
+      </h3>
+      <p className="text-[0.95rem] leading-relaxed text-muted-foreground">
+        My mentoring emphasises research problem formulation, technical rigour, responsible
+        scholarship and the clear communication of research outcomes.
+      </p>
     </div>
   </Section>
 );

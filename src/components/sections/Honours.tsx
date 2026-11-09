@@ -2,30 +2,10 @@ import Section from '@/components/Section';
 import { Trophy } from 'lucide-react';
 
 const honours = [
-  {
-    title: 'ET Industry Achievers Award',
-    detail: 'Recognition for excellence in academic leadership and institutional development, 2024–25.',
-  },
-  {
-    title: 'Times Education Excellence Award',
-    detail: 'Honoured for outstanding contribution to engineering education and quality assurance.',
-  },
-  {
-    title: 'Senior Member & Fellowships',
-    detail: 'SMIEEE, SMACM, FIETE and FIE — recognising sustained professional distinction.',
-  },
-  {
-    title: 'IEEE Leadership Recognition',
-    detail: 'Acknowledged for chapter leadership, volunteer service and global committee contributions.',
-  },
-  {
-    title: 'Research & Innovation Honours',
-    detail: 'Recognition for funded research, patents and the growth of innovation centres.',
-  },
-  {
-    title: 'Institutional Awards',
-    detail: 'Multiple honours for governance reform, accreditation leadership and academic excellence.',
-  },
+  { title: 'Visionary Leader Award', year: '21 March 2025' },
+  { title: 'ESSV Fellow', year: '2024' },
+  { title: 'Senior Member, IEEE', year: 'Conferred' },
+  { title: 'Fellow, IETE', year: 'Conferred' },
 ];
 
 const Honours = () => (
@@ -39,15 +19,17 @@ const Honours = () => (
     }
     intro="Fellowships, awards and professional recognitions earned across academic leadership, research and service to the profession."
   >
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-5 sm:grid-cols-2">
       {honours.map((h) => (
         <div
           key={h.title}
-          className="flex flex-col rounded-lg border border-border bg-card p-6 transition-colors duration-300 hover:border-accent/40"
+          className="flex items-start gap-4 rounded-lg border border-border bg-card p-6 transition-colors duration-300 hover:border-accent/40"
         >
-          <Trophy className="mb-4 h-6 w-6 text-accent" />
-          <h3 className="font-heading text-xl text-foreground">{h.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.detail}</p>
+          <Trophy className="mt-1 h-6 w-6 shrink-0 text-accent" />
+          <div>
+            <h3 className="font-heading text-xl font-semibold text-foreground">{h.title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{h.year}</p>
+          </div>
         </div>
       ))}
     </div>

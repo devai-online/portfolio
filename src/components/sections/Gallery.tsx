@@ -2,24 +2,32 @@ import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Section from '@/components/Section';
 
-import JVR118 from '@/assets/gallery/JVR118.jpg';
-import JVR117 from '@/assets/gallery/JVR117.jpg';
-import JVR116 from '@/assets/gallery/JVR116.jpg';
-import JVR115 from '@/assets/gallery/JVR115.jpg';
-import JVR114 from '@/assets/gallery/JVR114.jpg';
-import JVR113 from '@/assets/gallery/JVR113.jpg';
-import JVR112 from '@/assets/gallery/JVR112.jpg';
-import JVR11 from '@/assets/gallery/JVR11.jpg';
+import g01 from '@/assets/gallery/g01-felicitation.jpg';
+import g02 from '@/assets/gallery/g02-keynote.jpg';
+import g03 from '@/assets/gallery/g03-technical-session.jpg';
+import g04 from '@/assets/gallery/g04-institutional-event.jpg';
+import g05 from '@/assets/gallery/g05-icnwc-conference.jpg';
+import g06 from '@/assets/gallery/g06-award-presentation.jpg';
+import g07 from '@/assets/gallery/g07-certificate.jpg';
+import g08 from '@/assets/gallery/g08-dignitaries.jpg';
+import g09 from '@/assets/gallery/g09-mou-signing.jpg';
+import g10 from '@/assets/gallery/g10-team-recognition.jpg';
+import g11 from '@/assets/gallery/g11-faculty-students.jpg';
+import g12 from '@/assets/gallery/g12-honour.jpg';
 
 const galleryImages = [
-  { src: JVR118, caption: 'ET Industry Achievers Award 2024-25' },
-  { src: JVR115, caption: 'Times Education Excellence Awards' },
-  { src: JVR114, caption: 'VCE 25 Years Celebration' },
-  { src: JVR117, caption: 'Distinguished Guests Welcome' },
-  { src: JVR116, caption: 'Induction Programme Inauguration' },
-  { src: JVR113, caption: 'Blood Donation Camp Recognition' },
-  { src: JVR112, caption: 'QNX Partnership Signing' },
-  { src: JVR11, caption: 'MBA Orientation Day 2025' },
+  { src: g01, caption: 'Felicitation Ceremony' },
+  { src: g02, caption: 'Keynote Address' },
+  { src: g05, caption: 'ICNWC International Conference' },
+  { src: g06, caption: 'Award Presentation' },
+  { src: g03, caption: 'Technical Session' },
+  { src: g09, caption: 'Industry MoU Signing' },
+  { src: g04, caption: 'Institutional Celebration' },
+  { src: g08, caption: 'Dignitaries & Panel' },
+  { src: g07, caption: 'Certificate Presentation' },
+  { src: g10, caption: 'Team Recognition' },
+  { src: g11, caption: 'Faculty & Students' },
+  { src: g12, caption: 'Honour & Recognition' },
 ];
 
 const Gallery = () => {
@@ -50,7 +58,7 @@ const Gallery = () => {
           Moments &amp; <span className="text-muted-foreground">milestones</span>
         </>
       }
-      intro="Highlights from events, awards, partnerships and institutional celebrations."
+      intro="Highlights from conferences, award ceremonies, institutional events, industry partnerships and professional engagements."
       alt
     >
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -68,7 +76,7 @@ const Gallery = () => {
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-primary/85 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-foreground/85 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               <p className="text-left text-sm font-medium text-white">{image.caption}</p>
             </div>
           </button>

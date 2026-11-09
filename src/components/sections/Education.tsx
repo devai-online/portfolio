@@ -1,51 +1,44 @@
 import Section from '@/components/Section';
-import { InfoCardGrid, BulletList } from '@/components/blocks';
-import { Target, BookOpen, Network, BarChart3, Gauge, GraduationCap } from 'lucide-react';
+import { InfoCardGrid } from '@/components/blocks';
+import { Target, Network, BarChart3, Gauge, Lightbulb } from 'lucide-react';
 
 const cards = [
   {
     icon: Target,
     title: 'Engineering Knowledge Profile',
     description:
-      'Programme design mapped to the Washington Accord graduate attributes and complex engineering problem-solving.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Curriculum Development',
-    description:
-      'Industry-aligned, competency-based curricula with flexible credit structures and emerging-technology electives.',
+      'Reviewing curriculum breadth and depth across mathematics, sciences, engineering fundamentals, specialist knowledge, design, practice and societal context.',
   },
   {
     icon: Network,
-    title: 'Competency-Level CO–PO Mapping',
+    title: 'Outcome Alignment',
     description:
-      'Granular mapping of Course Outcomes to Programme Outcomes at competency and performance-indicator level.',
+      'Developing and reviewing Course Outcomes, Programme Outcomes, Programme Specific Outcomes and competency-level mapping using relevant performance indicators.',
   },
   {
     icon: BarChart3,
-    title: 'Assessment & Attainment',
+    title: 'Assessment Design',
     description:
-      'Direct and indirect assessment frameworks that quantify CO/PO attainment and drive data-informed revision.',
+      'Strengthening direct and indirect assessment, Bloom’s Taxonomy alignment and rubric-based evaluation.',
   },
   {
     icon: Gauge,
-    title: 'Key Performance Indicators',
+    title: 'Attainment Analysis',
     description:
-      'Academic KPIs for learning outcomes, pass rates, placements and research that inform institutional decisions.',
+      'Reviewing course and programme attainment, setting targets, identifying gaps and monitoring corrective measures.',
   },
   {
-    icon: GraduationCap,
-    title: 'Faculty Development',
+    icon: BarChart3,
+    title: 'Academic Performance Indicators',
     description:
-      'Structured faculty development on OBE, assessment design and pedagogy to sustain teaching quality.',
+      'Monitoring student performance, progression, graduation, placement and higher-education outcomes.',
   },
-];
-
-const principles = [
-  'Learner-centred, outcome-driven programme design',
-  'Alignment of assessments with intended learning outcomes',
-  'Closed-loop attainment analysis feeding curriculum revision',
-  'Evidence-based academic decision-making',
+  {
+    icon: Lightbulb,
+    title: 'Teaching Innovation',
+    description:
+      'Promoting student-centred, experiential and project-based learning, including Engineering Design Thinking and Universal Human Values.',
+  },
 ];
 
 const Education = () => (
@@ -57,12 +50,19 @@ const Education = () => (
         Outcomes you can <span className="text-muted-foreground">measure</span>
       </>
     }
-    intro="A rigorous, outcome-based approach to engineering education — from the engineering knowledge profile through curriculum, assessment, attainment and continuous faculty development."
+    intro="Implementing Outcome-Based Education across successive NBA accreditation frameworks since 2009 — including Tier-II and Washington Accord-aligned Tier-I frameworks — connecting curriculum design, teaching, assessment and improvement to intended student learning outcomes."
   >
     <InfoCardGrid cards={cards} />
+
     <div className="mt-12 rounded-lg border border-border bg-card p-8">
-      <h3 className="mb-6 font-heading text-2xl text-foreground">Guiding Principles</h3>
-      <BulletList items={principles} columns={2} />
+      <h3 className="mb-3 font-heading text-2xl font-semibold text-foreground">
+        Faculty Mentoring
+      </h3>
+      <p className="max-w-3xl text-[0.95rem] leading-relaxed text-muted-foreground">
+        I mentor faculty in curriculum delivery, learner engagement, assessment quality and
+        the documentation of continuous improvement — translating OBE principles into everyday
+        teaching practice.
+      </p>
     </div>
   </Section>
 );
