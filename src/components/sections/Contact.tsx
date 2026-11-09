@@ -125,8 +125,15 @@ const Contact = () => (
     </div>
 
     <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-border pt-8 text-sm text-muted-foreground sm:flex-row">
-      <p>© {new Date().getFullYear()} Prof. JVR Ravindra</p>
-      <p>All rights reserved</p>
+      <p>© {new Date().getFullYear()} Prof. JVR Ravindra · All rights reserved</p>
+      <a
+        href="https://ravendos.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="transition-colors hover:text-accent"
+      >
+        Made with <span className="text-accent">&hearts;</span> by RavenDOS
+      </a>
     </div>
   </Section>
 );

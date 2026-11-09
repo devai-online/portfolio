@@ -23,7 +23,7 @@ const Sidebar = () => {
   const navContent = (
     <div className="flex h-full flex-col">
       {/* Identity */}
-      <Link to="/" className="block px-6 pb-6 pt-9 text-left">
+      <Link to="/" className="block shrink-0 px-6 pb-6 pt-9 text-left">
         <span className="block font-heading text-xl font-semibold leading-tight text-foreground">
           Prof. JVR Ravindra
         </span>
@@ -34,8 +34,9 @@ const Sidebar = () => {
 
       <div className="mx-6 border-t border-border" />
 
-      {/* Navigation — fits without scrolling, one item per line */}
-      <nav className="flex-1 px-4 py-4">
+      {/* Navigation — one item per line; scrolls internally only when the
+          viewport is too short to show every item (keeps footer visible) */}
+      <nav className="scrollbar-slim min-h-0 flex-1 overflow-y-auto px-4 py-4">
         <ul className="space-y-0.5">
           {sections.map((item) => (
             <li key={item.path}>
@@ -66,9 +67,9 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      {/* Contact footer */}
-      <div className="mx-6 border-t border-border" />
-      <div className="space-y-2 px-6 py-5">
+      {/* Contact footer — pinned, always visible */}
+      <div className="mx-6 shrink-0 border-t border-border" />
+      <div className="shrink-0 space-y-2 px-6 py-5">
         <a
           href="mailto:jvrravindra@gmail.com"
           className="flex items-center gap-3 text-xs text-muted-foreground transition-colors hover:text-accent"
