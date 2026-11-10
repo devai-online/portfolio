@@ -1,5 +1,6 @@
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+import './index.css';
+import { ViteReactSSG } from 'vite-react-ssg';
+import { routes } from './routes';
 
-createRoot(document.getElementById("root")!).render(<App />);
+// ViteReactSSG wires up the router, server-side pre-rendering and client hydration.
+export const createRoot = ViteReactSSG({ routes });
