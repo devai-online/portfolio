@@ -163,38 +163,60 @@ export const SimpleTable = ({
   headers: string[];
   rows: (string | ReactNode)[][];
 }) => (
-  <div className="overflow-x-auto rounded-lg border border-border">
-    <table className="w-full border-collapse text-left text-sm">
-      <thead>
-        <tr className="bg-card">
-          {headers.map((h) => (
-            <th
-              key={h}
-              className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-foreground"
-            >
-              {h}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i} className="border-t border-border align-top">
-            {row.map((cell, j) => (
-              <td
-                key={j}
-                className={`px-4 py-3 leading-relaxed ${
-                  j === 0 ? 'font-medium text-foreground' : 'text-muted-foreground'
-                }`}
+  <>
+    {/* Desktop / tablet: real table */}
+    <div className="hidden overflow-x-auto rounded-lg border border-border sm:block">
+      <table className="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr className="bg-card">
+            {headers.map((h) => (
+              <th
+                key={h}
+                className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-foreground"
               >
-                {cell}
-              </td>
+                {h}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} className="border-t border-border align-top">
+              {row.map((cell, j) => (
+                <td
+                  key={j}
+                  className={`px-4 py-3 leading-relaxed ${
+                    j === 0 ? 'font-medium text-foreground' : 'text-muted-foreground'
+                  }`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Mobile: stacked cards (label + value pairs) */}
+    <div className="space-y-4 sm:hidden">
+      {rows.map((row, i) => (
+        <div key={i} className="rounded-lg border border-border bg-background p-4">
+          <p className="font-heading text-base font-semibold text-foreground">{row[0]}</p>
+          <dl className="mt-2 space-y-1.5">
+            {row.slice(1).map((cell, j) => (
+              <div key={j} className="flex gap-2 text-sm">
+                <dt className="shrink-0 font-medium text-muted-foreground">
+                  {headers[j + 1]}:
+                </dt>
+                <dd className="text-muted-foreground">{cell}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </>
 );
 
 /* ------------------------------------------------------------------ */

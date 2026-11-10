@@ -1,5 +1,7 @@
 import Section from '@/components/Section';
 import { Timeline, SimpleTable } from '@/components/blocks';
+import { Trophy } from 'lucide-react';
+import portrait from '@/assets/portrait.webp';
 
 const qualifications = [
   [
@@ -31,6 +33,13 @@ const milestones = [
     detail:
       'Undergraduate and postgraduate engineering education, alongside VLSI research and professional service with NAAC and UGC.',
   },
+];
+
+const honours = [
+  { title: 'Visionary Leader Award', year: '21 March 2025' },
+  { title: 'ESSV Fellow', year: '2024' },
+  { title: 'Senior Member, IEEE', year: 'Conferred' },
+  { title: 'Fellow, IETE', year: 'Conferred' },
 ];
 
 const About = () => (
@@ -83,10 +92,40 @@ const About = () => (
       </div>
 
       <div className="lg:col-span-5">
+        <div className="mb-10 overflow-hidden rounded-lg border border-border">
+          <img
+            src={portrait}
+            alt="Prof. JVR Ravindra"
+            className="w-full object-cover"
+            loading="lazy"
+          />
+        </div>
         <h3 className="mb-7 font-heading text-2xl font-semibold text-foreground">
           Academic Journey
         </h3>
         <Timeline items={milestones} />
+      </div>
+    </div>
+
+    {/* Honours & Recognition */}
+    <div className="mt-16 border-t border-border pt-14">
+      <h3 className="mb-2 font-heading text-2xl font-semibold text-foreground">
+        Honours & Recognition
+      </h3>
+      <p className="mb-8 text-sm text-muted-foreground">
+        Fellowships, awards and professional recognitions across academic leadership and service.
+      </p>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {honours.map((h) => (
+          <div
+            key={h.title}
+            className="rounded-lg border border-border bg-background p-6 transition-colors duration-300 hover:border-accent/40"
+          >
+            <Trophy className="mb-4 h-6 w-6 text-accent" />
+            <h4 className="font-heading text-lg font-semibold text-foreground">{h.title}</h4>
+            <p className="mt-1 text-sm text-muted-foreground">{h.year}</p>
+          </div>
+        ))}
       </div>
     </div>
   </Section>

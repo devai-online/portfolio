@@ -37,33 +37,49 @@ const Sidebar = () => {
       {/* Navigation — one item per line; scrolls internally only when the
           viewport is too short to show every item (keeps footer visible) */}
       <nav className="scrollbar-slim min-h-0 flex-1 overflow-y-auto px-4 py-4">
-        <ul className="space-y-0.5">
-          {sections.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={item.path}
-                end={item.path === '/'}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 whitespace-nowrap rounded-md px-4 py-2 text-[0.78rem] tracking-wide transition-colors duration-200 ${
-                    isActive
-                      ? 'bg-muted font-medium text-foreground'
-                      : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    <span
-                      className={`h-4 w-0.5 shrink-0 rounded-full transition-colors duration-200 ${
-                        isActive ? 'bg-accent' : 'bg-transparent'
-                      }`}
-                    />
-                    {item.label}
-                  </>
-                )}
-              </NavLink>
-            </li>
-          ))}
+        <ul className="space-y-1">
+          {sections.map((item) =>
+            item.highlight ? (
+              <li key={item.path} className="pt-3">
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 py-2.5 text-sm font-medium tracking-wide transition-colors duration-200 ${
+                      isActive
+                        ? 'bg-accent/90 text-accent-foreground'
+                        : 'bg-accent text-accent-foreground hover:bg-accent/90'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ) : (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 whitespace-nowrap rounded-md px-4 py-2.5 text-sm tracking-wide transition-colors duration-200 ${
+                      isActive
+                        ? 'bg-muted font-medium text-foreground'
+                        : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span
+                        className={`h-4 w-0.5 shrink-0 rounded-full transition-colors duration-200 ${
+                          isActive ? 'bg-accent' : 'bg-transparent'
+                        }`}
+                      />
+                      {item.label}
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            )
+          )}
         </ul>
       </nav>
 

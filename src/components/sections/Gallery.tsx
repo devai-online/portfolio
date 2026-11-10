@@ -1,42 +1,62 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Section from '@/components/Section';
 
-import g01 from '@/assets/gallery/g01-felicitation.jpg';
-import g02 from '@/assets/gallery/g02-keynote.jpg';
-import g03 from '@/assets/gallery/g03-technical-session.jpg';
-import g04 from '@/assets/gallery/g04-institutional-event.jpg';
-import g05 from '@/assets/gallery/g05-icnwc-conference.jpg';
-import g06 from '@/assets/gallery/g06-award-presentation.jpg';
-import g07 from '@/assets/gallery/g07-certificate.jpg';
-import g08 from '@/assets/gallery/g08-dignitaries.jpg';
-import g09 from '@/assets/gallery/g09-mou-signing.jpg';
-import g10 from '@/assets/gallery/g10-team-recognition.jpg';
-import g11 from '@/assets/gallery/g11-faculty-students.jpg';
-import g12 from '@/assets/gallery/g12-honour.jpg';
+import g01 from '@/assets/gallery/g01-leadership-review.webp';
+import g02 from '@/assets/gallery/g02-governance-meeting.webp';
+import g03 from '@/assets/gallery/g03-obe-session.webp';
+import g04 from '@/assets/gallery/g04-faculty-development.webp';
+import g05 from '@/assets/gallery/g05-qnx-ehack.webp';
+import g06 from '@/assets/gallery/g06-awareness-drive.webp';
+import g07 from '@/assets/gallery/g07-anti-drug-awareness.webp';
+import g08 from '@/assets/gallery/g08-ncc-cadets.webp';
+import g09 from '@/assets/gallery/g09-nss-day.webp';
+import g10 from '@/assets/gallery/g10-faculty-group.webp';
+import g11 from '@/assets/gallery/g11-student-event.webp';
+import g12 from '@/assets/gallery/g12-award-stage.webp';
+import g13 from '@/assets/gallery/g13-felicitation.webp';
+import g14 from '@/assets/gallery/g14-silver-jubilee.webp';
 
-const galleryImages = [
-  { src: g01, caption: 'Felicitation Ceremony' },
-  { src: g02, caption: 'Keynote Address' },
-  { src: g05, caption: 'ICNWC International Conference' },
-  { src: g06, caption: 'Award Presentation' },
-  { src: g03, caption: 'Technical Session' },
-  { src: g09, caption: 'Industry MoU Signing' },
-  { src: g04, caption: 'Institutional Celebration' },
-  { src: g08, caption: 'Dignitaries & Panel' },
-  { src: g07, caption: 'Certificate Presentation' },
-  { src: g10, caption: 'Team Recognition' },
-  { src: g11, caption: 'Faculty & Students' },
-  { src: g12, caption: 'Honour & Recognition' },
+interface Item {
+  src: string;
+  caption: string;
+  category: string;
+}
+
+const images: Item[] = [
+  { src: g01, caption: 'Academic Review Meeting', category: 'Leadership' },
+  { src: g02, caption: 'Governance Meeting', category: 'Leadership' },
+  { src: g03, caption: 'Outcome-Based Education Session', category: 'Education' },
+  { src: g04, caption: 'Faculty Development Programme', category: 'Education' },
+  { src: g05, caption: 'QNX eHack Industry Programme', category: 'Industry' },
+  { src: g06, caption: 'Community Awareness Drive', category: 'Outreach' },
+  { src: g07, caption: 'Anti-Drug Awareness Address', category: 'Outreach' },
+  { src: g08, caption: 'NCC Cadets Programme', category: 'Outreach' },
+  { src: g09, caption: 'NSS Day Celebration', category: 'Outreach' },
+  { src: g10, caption: 'Faculty & Student Group', category: 'Students' },
+  { src: g11, caption: 'Student Engagement', category: 'Students' },
+  { src: g12, caption: 'Award Recognition', category: 'Honours' },
+  { src: g13, caption: 'Felicitation Ceremony', category: 'Honours' },
+  { src: g14, caption: 'Silver Jubilee Celebration', category: 'Honours' },
 ];
 
+const categories = ['All', 'Leadership', 'Education', 'Industry', 'Outreach', 'Students', 'Honours'];
+
 const Gallery = () => {
+  const [filter, setFilter] = useState('All');
   const [selected, setSelected] = useState<number | null>(null);
 
-  const next = () =>
-    setSelected((i) => (i === null ? i : (i + 1) % galleryImages.length));
+  const visible = useMemo(
+    () => (filter === 'All' ? images : images.filter((i) => i.category === filter)),
+    [filter]
+  );
+
+  // Reset lightbox when the filter changes.
+  useEffect(() => setSelected(null), [filter]);
+
+  const next = () => setSelected((i) => (i === null ? i : (i + 1) % visible.length));
   const prev = () =>
-    setSelected((i) => (i === null ? i : (i - 1 + galleryImages.length) % galleryImages.length));
+    setSelected((i) => (i === null ? i : (i - 1 + visible.length) % visible.length));
 
   useEffect(() => {
     if (selected === null) return;
@@ -47,7 +67,7 @@ const Gallery = () => {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [selected]);
+  }, [selected, visible.length]);
 
   return (
     <Section
@@ -58,13 +78,30 @@ const Gallery = () => {
           Moments &amp; <span className="text-muted-foreground">milestones</span>
         </>
       }
-      intro="Highlights from conferences, award ceremonies, institutional events, industry partnerships and professional engagements."
+      intro="Highlights from leadership engagements, outcome-based education, industry partnerships, societal outreach, student mentorship and honours — filter by category below."
       alt
     >
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {galleryImages.map((image, index) => (
+      {/* Category filter */}
+      <div className="mb-8 flex flex-wrap gap-2">
+        {categories.map((c) => (
           <button
-            key={index}
+            key={c}
+            onClick={() => setFilter(c)}
+            className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
+              filter === c
+                ? 'border-accent bg-accent text-accent-foreground'
+                : 'border-border bg-background text-muted-foreground hover:border-accent/50 hover:text-foreground'
+            }`}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {visible.map((image, index) => (
+          <button
+            key={image.caption}
             onClick={() => setSelected(index)}
             className="group relative overflow-hidden rounded-lg"
           >
@@ -117,12 +154,12 @@ const Gallery = () => {
           </button>
           <div className="max-h-[85vh] max-w-5xl" onClick={(e) => e.stopPropagation()}>
             <img
-              src={galleryImages[selected].src}
-              alt={galleryImages[selected].caption}
+              src={visible[selected].src}
+              alt={visible[selected].caption}
               className="max-h-[80vh] max-w-full rounded-lg object-contain"
             />
             <p className="mt-4 text-center font-heading text-lg text-white">
-              {galleryImages[selected].caption}
+              {visible[selected].caption}
             </p>
           </div>
         </div>
