@@ -44,7 +44,16 @@ const news = [
   { img: newsObe, caption: 'Outcome-Based Education Session', tag: 'Education' },
 ];
 
-const affiliations = ['IEEE', 'IETE', 'ACM', 'NAAC', 'UGC', 'AICTE', 'QNX', 'Cadence'];
+const affiliations = [
+  { name: 'IEEE', logo: '/ieee.png' },
+  { name: 'IETE', logo: '/iete.jpeg' },
+  { name: 'ACM', logo: '/acm.jpeg' },
+  { name: 'NAAC', logo: '/naac.jpeg' },
+  { name: 'UGC', logo: '/ugc.png' },
+  { name: 'AICTE', logo: '/acite.jpeg' },
+  { name: 'QNX', logo: '/qnx.png' },
+  { name: 'Cadence', logo: '/cadence.png' },
+];
 
 const Home = () => (
   <div>
@@ -190,14 +199,19 @@ const Home = () => (
         <p className="mb-6 text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
           Affiliations & Partners
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
           {affiliations.map((a) => (
-            <span
-              key={a}
-              className="font-heading text-xl font-semibold tracking-wide text-primary/70"
+            <div
+              key={a.name}
+              className="flex h-20 items-center justify-center rounded-lg border border-border bg-white p-4"
             >
-              {a}
-            </span>
+              <img
+                src={a.logo}
+                alt={`${a.name} logo`}
+                loading="lazy"
+                className="max-h-12 w-auto max-w-full object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
