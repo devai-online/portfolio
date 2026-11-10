@@ -110,7 +110,7 @@ const Research = () => (
       </p>
       <div className="mt-6 flex flex-wrap gap-4">
         <a
-          href="https://scholar.google.com/"
+          href="https://scholar.google.com/citations?user=y7lU3NAAAAAJ&hl=en"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 border border-border px-5 py-2.5 text-sm uppercase tracking-wide text-foreground transition-colors hover:border-accent hover:text-accent"

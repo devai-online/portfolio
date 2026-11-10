@@ -23,8 +23,8 @@ const details = [
 ];
 
 const profiles = [
-  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  { icon: GraduationCap, label: 'Google Scholar', href: 'https://scholar.google.com/' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/jvr-ravindra-39b580192/' },
+  { icon: GraduationCap, label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=y7lU3NAAAAAJ&hl=en' },
 ];
 
 const enquiries = [
