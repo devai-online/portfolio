@@ -51,6 +51,12 @@ const selectedPubs = [
   '“Design and implementation of network-on-chip router using multi-priority based iterative round-robin matching with SLIP.” Transactions on Emerging Telecommunications Technologies, 2022.',
   '“Design and Implementation of Power-Efficient Cryptography Scheme Using a Novel Multiplication Technique.” Wireless Personal Communications, 2023.',
   '“Generic sub-space algorithm for generating reduced order models of linear time varying VLSI circuits.” ACM Great Lakes Symposium on VLSI, 2008.',
+  '“Generating reduced order models for high-speed VLSI interconnects using the balancing-free square-root method.” IEEE Workshop on Signal Propagation on Interconnects, 2008.',
+];
+
+// Research profiles — Google Scholar is live; others await the professor's IDs.
+const profiles = [
+  { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=y7lU3NAAAAAJ&hl=en' },
 ];
 
 const Research = () => (
@@ -66,6 +72,25 @@ const Research = () => (
     alt
   >
     <StatGrid stats={stats} />
+
+    <div className="mt-12 rounded-lg border border-border bg-background p-7">
+      <h3 className="mb-4 font-heading text-2xl font-semibold text-foreground">
+        Research Profiles
+      </h3>
+      <div className="flex flex-wrap gap-3">
+        {profiles.map((p) => (
+          <a
+            key={p.label}
+            href={p.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-border px-5 py-2.5 text-sm uppercase tracking-wide text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            {p.label}
+          </a>
+        ))}
+      </div>
+    </div>
 
     <div className="mt-12">
       <h3 className="mb-5 font-heading text-2xl font-semibold text-foreground">
@@ -108,16 +133,6 @@ const Research = () => (
         — Sachi Nandan Mohanty, JVR Ravindra, G. Surya Narayana, Chinmaya Ranjan Pattnaik and
         Y. Mohamed Sirajudeen. John Wiley &amp; Sons, 2023.
       </p>
-      <div className="mt-6 flex flex-wrap gap-4">
-        <a
-          href="https://scholar.google.com/citations?user=y7lU3NAAAAAJ&hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 border border-border px-5 py-2.5 text-sm uppercase tracking-wide text-foreground transition-colors hover:border-accent hover:text-accent"
-        >
-          Google Scholar
-        </a>
-      </div>
     </div>
   </Section>
 );

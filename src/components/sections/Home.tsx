@@ -10,11 +10,9 @@ import newsObe from '@/assets/gallery/g03-obe-session.webp';
 
 const stats = [
   { value: '27', label: 'Years in Academia' },
-  { value: 'A++', label: 'NAAC (3.58)' },
-  { value: '9', label: 'Ph.D. Scholars' },
   { value: '125+', label: 'Publications' },
   { value: '₹3.5 Cr', label: 'Funded Projects' },
-  { value: '55', label: 'Policies & SOPs' },
+  { value: '9', label: 'Ph.D. Scholars Guided' },
 ];
 
 const focus = [
@@ -39,21 +37,47 @@ const focus = [
 ];
 
 const news = [
-  { img: newsAward, caption: 'Award Recognition', tag: 'Honours' },
-  { img: newsQnx, caption: 'QNX eHack Industry Programme', tag: 'Industry' },
-  { img: newsObe, caption: 'Outcome-Based Education Session', tag: 'Education' },
+  {
+    img: newsAward,
+    caption: 'Award Recognition',
+    tag: 'Honours',
+    summary: 'Recognised for leadership in engineering education and institutional development.',
+  },
+  {
+    img: newsQnx,
+    caption: 'QNX eHack Industry Programme',
+    tag: 'Industry',
+    summary: 'Industry collaboration with QNX on embedded systems and hands-on skilling.',
+  },
+  {
+    img: newsObe,
+    caption: 'Outcome-Based Education Session',
+    tag: 'Education',
+    summary: 'Faculty development session on OBE, CO–PO mapping and assessment design.',
+  },
 ];
 
-const affiliations = [
+const memberships = [
   { name: 'IEEE', logo: '/ieee.png' },
   { name: 'IETE', logo: '/iete.jpeg' },
   { name: 'ACM', logo: '/acm.jpeg' },
-  { name: 'NAAC', logo: '/naac.jpeg' },
-  { name: 'UGC', logo: '/ugc.png' },
-  { name: 'AICTE', logo: '/acite.jpeg' },
+];
+
+const industry = [
   { name: 'QNX', logo: '/qnx.png' },
   { name: 'Cadence', logo: '/cadence.png' },
 ];
+
+const LogoTile = ({ name, logo }: { name: string; logo: string }) => (
+  <div className="flex h-16 w-28 items-center justify-center rounded-lg border border-border bg-white p-3">
+    <img
+      src={logo}
+      alt={name}
+      loading="lazy"
+      className="max-h-10 w-auto max-w-full object-contain grayscale transition duration-300 hover:grayscale-0"
+    />
+  </div>
+);
 
 const Home = () => (
   <div>
@@ -61,8 +85,8 @@ const Home = () => (
     <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-background to-card px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
       <div className="mx-auto grid w-full max-w-content items-center gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-accent">
-            SMIEEE &bull; FIETE &bull; MACM
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+            Senior Member, IEEE &middot; Fellow, IETE &middot; Member, ACM
           </p>
           <h1 className="font-heading text-5xl font-semibold leading-[1.05] text-foreground sm:text-6xl lg:text-7xl">
             Prof. JVR <span className="text-accent">Ravindra</span>
@@ -71,7 +95,7 @@ const Home = () => (
             </span>
           </h1>
           <div className="my-7 h-px w-16 bg-accent" />
-          <p className="max-w-xl text-lg font-medium text-foreground">
+          <p className="max-w-2xl text-lg font-medium text-foreground">
             Advancing engineering education through outcome-based learning, research and quality
             assurance.
           </p>
@@ -110,9 +134,9 @@ const Home = () => (
       </div>
     </section>
 
-    {/* 2 — Credibility strip */}
+    {/* 2 — Credibility strip (four strong figures) */}
     <section className="border-y border-border bg-card px-6 py-10 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-content grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="mx-auto grid max-w-content grid-cols-2 gap-6 sm:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label} className="text-center">
             <p className="font-heading text-3xl font-semibold text-accent sm:text-4xl">
@@ -140,7 +164,7 @@ const Home = () => (
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={f.img}
-                  alt={f.title}
+                  alt=""
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -174,11 +198,11 @@ const Home = () => (
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {news.map((n) => (
-            <Link key={n.caption} to="/gallery" className="group overflow-hidden rounded-lg">
+            <Link key={n.caption} to="/gallery" className="group block overflow-hidden rounded-lg">
               <div className="aspect-[4/3] overflow-hidden rounded-lg">
                 <img
                   src={n.img}
-                  alt={n.caption}
+                  alt=""
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -187,32 +211,40 @@ const Home = () => (
               <p className="mt-1 font-medium text-foreground group-hover:text-accent">
                 {n.caption}
               </p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{n.summary}</p>
             </Link>
           ))}
         </div>
       </div>
     </section>
 
-    {/* 5 — Affiliations strip */}
-    <section className="border-t border-border px-6 py-12 sm:px-10 lg:px-16">
+    {/* 5 — Affiliations (grouped) */}
+    <section className="border-t border-border px-6 py-14 sm:px-10 lg:px-16">
       <div className="mx-auto max-w-content">
-        <p className="mb-6 text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          Affiliations & Partners
-        </p>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
-          {affiliations.map((a) => (
-            <div
-              key={a.name}
-              className="flex h-20 items-center justify-center rounded-lg border border-border bg-white p-4"
-            >
-              <img
-                src={a.logo}
-                alt={`${a.name} logo`}
-                loading="lazy"
-                className="max-h-12 w-auto max-w-full object-contain"
-              />
+        <div className="flex flex-col items-center gap-10 sm:flex-row sm:justify-center sm:gap-16">
+          <div className="text-center">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              Professional Memberships
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {memberships.map((m) => (
+                <LogoTile key={m.name} {...m} />
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="hidden h-24 w-px bg-border sm:block" />
+
+          <div className="text-center">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              Industry Collaborations
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {industry.map((m) => (
+                <LogoTile key={m.name} {...m} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
