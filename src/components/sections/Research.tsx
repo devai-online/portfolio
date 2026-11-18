@@ -54,9 +54,12 @@ const selectedPubs = [
   '“Generating reduced order models for high-speed VLSI interconnects using the balancing-free square-root method.” IEEE Workshop on Signal Propagation on Interconnects, 2008.',
 ];
 
-// Research profiles — Google Scholar is live; others await the professor's IDs.
 const profiles = [
   { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=y7lU3NAAAAAJ&hl=en' },
+  { label: 'ORCID', href: 'https://orcid.org/0000-0001-7636-1791' },
+  { label: 'Scopus', href: 'https://www.scopus.com/authid/detail.uri?authorId=12645916300' },
+  { label: 'Web of Science', href: 'https://www.webofscience.com/wos/author/record/C-3656-2016' },
+  { label: 'VIDWAN', href: 'https://vidwan.inflibnet.ac.in/profile/235875' },
 ];
 
 const Research = () => (
